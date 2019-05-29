@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            anim.Play("player");
+            anim.Play("Running");
             gameObject.transform.Translate(Vector3.left * speed * Time.deltaTime);
             //xoay mat
             if (gameObject.transform.localScale.x > 0)
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            anim.Play("player");
+            anim.Play("Running");
             gameObject.transform.Translate(Vector3.right * speed * Time.deltaTime);
             //xoay mat
             if (gameObject.transform.localScale.x < 0)
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            anim.Play("ido");
+            anim.Play("Idle");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
