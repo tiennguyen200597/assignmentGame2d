@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class Player : MonoBehaviour
     private bool isGrounder;
 
     private Animator anim;
+    //
+    int score = 0;
+    public Text textScore;
+    //
 
     private void Awake()
     {
@@ -18,7 +23,21 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        textScore = GameObject.Find("txtTextScore").GetComponent<Text>();
 
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounder = true;
+        }
+        if (collision.gameObject.tag == "Coin")
+        {
+            score++;
+            Destroy(collision.gameObject);
+            textScore.text = "Score:" + score.ToString();
+        }
     }
 
     // Update is called once per frame
@@ -57,11 +76,5 @@ public class Player : MonoBehaviour
             anim.Play("Idle");
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            isGrounder = true;
-        }
-    }
+
 }
